@@ -9,8 +9,8 @@ node {
     docker.image('python:alpine3.18').withRun(){
         stage('Test') {
             // sh 'wget https://bootstrap.pypa.io/get-pip.py'
-            // sh 'apk add py-pip'
-            sh 'pip install pytest'
+            sh 'python3 --version'
+            sh 'pip3 install pytest'
             sh 'pytest --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             junit 'test-reports/results.xml'
         }
