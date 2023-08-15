@@ -1,4 +1,5 @@
 node {
+    checkout scm
     docker.image('python:2-alpine').withRun(){ c->
         stage('Build') {
             // agent { docker 'python:2-alpine' }\
