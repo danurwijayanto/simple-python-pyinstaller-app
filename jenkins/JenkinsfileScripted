@@ -7,7 +7,6 @@ node {
         }
     stage('Test') {
         docker.image('qnib/pytest').inside(){
-            sh 'ls -la /usr/bin/'
             sh 'python -m pytest --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             junit 'test-reports/results.xml'
         }
