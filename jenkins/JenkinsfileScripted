@@ -8,7 +8,7 @@ node {
     // docker.image('qnib/pytest').withRun(){
     docker.image('python:2-alpine').withRun(){
         stage('Test') {
-            sh 'ls -la /usr/bin/'
+            sh 'python3 -m ensurepip --upgrade'
             sh 'pip3 install pytest'
             sh 'pytest --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             junit 'test-reports/results.xml'
