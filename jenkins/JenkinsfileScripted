@@ -2,7 +2,7 @@ node {
     docker.image('python:2-alpine').withRun(){ c->
         stage('Build') {
             // agent { docker 'python:2-alpine' }\
-                sh 'ls -la'
+                sh 'ls -la && pwd'
                 sh 'ls -la /usr/bin/'
                 sh 'python3 -m py_compile sources/add2vals.py sources/calc.py'
             }   
