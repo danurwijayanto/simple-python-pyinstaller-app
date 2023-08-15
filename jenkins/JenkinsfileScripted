@@ -8,8 +8,8 @@ node {
     // docker.image('qnib/pytest').withRun(){
     docker.image('python:2-alpine').withRun(){
         stage('Test') {
-            sh 'wget https://bootstrap.pypa.io/get-pip.py'
-            sh 'python3 get-pip.py'
+            // sh 'wget https://bootstrap.pypa.io/get-pip.py'
+            // sh 'python3 get-pip.py'
             sh 'pip3 install pytest'
             sh 'pytest --verbose --junit-xml test-reports/results.xml sources/test_calc.py'
             junit 'test-reports/results.xml'
