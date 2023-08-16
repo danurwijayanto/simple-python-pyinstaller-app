@@ -13,7 +13,10 @@ node {
     }
     stage('Deliver') {
         sh 'echo $(pwd)'
-        sh 'docker run --rm -v $(pwd)/sources:/src cdrx/pyinstaller-linux:python2 "pyinstaller -F add2vals.p"'
+        dir(path: env.BUILD_ID) { 
+            unstash(name: 'compiled-results') 
+            sh 'docker run --rm -v $(pwd)/sources:/src cdrx/pyinstaller-linux:python2 "pyinstaller -F add2vals.p"'
+        }
         archiveArtifacts 'dist/add2vals'
         sh 'docker run --rm -v $(pwd)/sources:/src cdrx/pyinstaller-linux:python2 "rm -rf build dist"'
         // docker.image('cdrx/pyinstaller-linux:python2').inside(){
