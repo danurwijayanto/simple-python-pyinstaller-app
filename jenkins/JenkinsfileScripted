@@ -12,6 +12,7 @@ node {
         }
     }
     stage('Deliver') {
+        sh 'echo $(pwd)'
         sh 'docker run --rm -v $(pwd)/sources:/src cdrx/pyinstaller-linux:python2 "pyinstaller -F add2vals.p"'
         archiveArtifacts 'dist/add2vals'
         sh 'docker run --rm -v $(pwd)/sources:/src cdrx/pyinstaller-linux:python2 "rm -rf build dist"'
